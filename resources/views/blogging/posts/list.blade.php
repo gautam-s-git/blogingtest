@@ -53,9 +53,13 @@
                     <td>{{ date('d M y',strtotime($post->created_at)) }}</td>
                     <td>
                         <div>
-                            <a href="{{ route('post.edit',['slug'=>$post->slug]) }}" class="btn btn-primary btn-circle"><i class="fa fa-edit"></i></a>
                             <a href="{{ route('post.view',['slug'=>$post->slug]) }}" class="btn btn-info btn-circle"><i class="fa fa-eye"></i></a>
-                             <a href="{{ route('post.delete',['slug'=>$post->slug]) }}" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+                            @if(Auth::user()->id==$post->author->id)
+                            <a href="{{ route('post.edit',['slug'=>$post->slug]) }}" class="btn btn-primary btn-circle"><i class="fa fa-edit"></i></a>
+                            <a href="{{ route('post.delete',['slug'=>$post->slug]) }}" class="btn btn-danger btn-circle"><i class="fa fa-trash"></i></a>
+                            @endif
+                           
+                             
                         </div>
                     </td>
                    </tr>
